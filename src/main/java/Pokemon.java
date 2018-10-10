@@ -94,6 +94,39 @@ public class Pokemon {
     }
 
     /**
+     * Create a new Pokemon with custom values.
+     * <p>
+     * Constructs a new Pokemon with a 6-sided die, 20-sided die, 0 hit points, attack level of 0,
+     * defense level of 0, and an empty name.
+     * @param setHitpoints = Hitpoints
+     * @param setAttackLevel = attack level
+     * @param setDefenseLevel = defense level
+     * @param setName = name
+     * @param type = type of Pokemon
+     *
+     */
+    public Pokemon(final String setName, final int setHitpoints, final int setAttackLevel, final int setDefenseLevel, final int type) {
+        final int d6num = 6;
+        final int d20num = 20;
+        this.d6 = new Dice(d6num);
+        this.d20 = new Dice(d20num);
+        if (type == 1) {
+            this.pokeType = PokemonType.ELECTRIC;
+        } else if (type == 2) {
+            this.pokeType = PokemonType.FIRE;
+        } else if (type == 3) {
+            this.pokeType = PokemonType.WATER;
+        }
+
+        this.name = setName;
+        hitPoints = setHitpoints;
+        attackLevel = setAttackLevel;
+        defenseLevel = setDefenseLevel;
+
+
+
+    }
+    /**
      * Get the attack level of the pokemon.
      * @return attackLevel the attack level of the pokemon
      */

@@ -18,6 +18,11 @@ public class Colosseum {
     static final int MAX_HIT_POINTS = 50;
 
     /**
+     * The maximum number of attack level we will allow a Pokemon to start with.
+     */
+    static final int MAX_ATTACK_LEVEL = 49;
+
+    /**
      * The maximum number of rounds we will let the Pokemon battle.
      */
     static final int MAX_NUM_ROUNDS = 10;
@@ -102,8 +107,86 @@ public class Colosseum {
      * (Look, we can return objects too!)
      */
     public static Pokemon buildPokemon() {
-        Pokemon returnPokemon = null;
-        return returnPokemon;
+        int hitpoints = 0;
+        int attackLevel = 0;
+        int defenseLevel = 0;
+        int type = 0;
+        boolean validInput = false;
+
+
+
+        printTypeMenu();
+        System.out.println("Type the integer corresponding to the type of pokemon you would like to create (1, 2, 3)");
+        while (validInput == false) {
+            type = myScan.nextInt();
+            if (type == 1 || type == 2 || type == 3) {
+                validInput = true;
+
+
+            } else {
+                System.out.println("Sorry. Invalid Number. Must be (1-3)");
+
+            }
+
+        }
+
+        validInput = false;
+
+        System.out.println("Enter a Name: ");
+        String name = myScan.next();
+
+
+        while (validInput == false) {
+            System.out.println("Enter Hitpoints: ");
+            hitpoints = myScan.nextInt();
+
+            if (hitpoints > 0 & hitpoints <= MAX_HIT_POINTS) {
+                validInput = true;
+            } else {
+                System.out.println("Sorry. Hit points must be between 1 and 50");
+
+            }
+
+        }
+
+        validInput = false;
+
+        while (validInput == false) {
+            System.out.println("Enter Attack Level: ");
+            attackLevel = myScan.nextInt();
+
+            if (attackLevel > 0 & attackLevel < MAX_ATTACK_LEVEL) {
+                validInput = true;
+            } else {
+                System.out.println("Sorry. Attack Level must be between 1 and 49");
+
+            }
+
+        }
+
+        int validDefenseLevel = 50 - attackLevel;
+
+        validInput = false;
+
+        while (validInput == false) {
+            System.out.println("Enter your defense Level: ");
+            defenseLevel = myScan.nextInt();
+
+            if (defenseLevel > 0 & defenseLevel < validDefenseLevel) {
+                validInput = true;
+            } else {
+                System.out.println("Sorry. Defense level must be between 1 and " + validDefenseLevel);
+
+            }
+
+        }
+
+        Pokemon tempPokemon = new Pokemon(name, hitpoints, attackLevel, defenseLevel, type);
+        return tempPokemon;
+
+
+
+
     }
 
     /**
